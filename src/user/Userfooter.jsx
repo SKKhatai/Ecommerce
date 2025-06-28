@@ -1,8 +1,12 @@
-import React from 'react'
+
 
 function Userfooter() {
     return (
-        <div className="adminfooter">
+        <div className="adminfooter" style={{
+            backgroundColor:"#092e52", padding:"20px", color:"white", display:"flex", 
+            flexDirection:"row", alignItems:"center",
+            justifyContent:"space-around", marginTop:"10rem", height:"30vh"
+        }} >
             <div className="para1">
                 <h3>Company</h3>
                 <h4>About us</h4>

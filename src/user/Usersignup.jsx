@@ -9,7 +9,7 @@ function Usersignup() {
   let [password, setPassword] = useState("")
     
   useEffect(()=>{
-     axios.get('http://localhost:1000/User')
+     axios.get('https://68397deb6561b8d882b09d9c.mockapi.io/ecom/users')
      .then((res)=>{
       console.log(res)
      })

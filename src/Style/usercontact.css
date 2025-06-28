@@ -1,0 +1,94 @@
+
+
+.contact2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffffff;
+    padding: 40px 20px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    gap: 40px;
+    flex-wrap: wrap;
+    width: 150vh;
+    z-index: 1;
+  }
+  
+  .contactUs {
+    flex:1;
+    width: 250px;
+  }
+  
+  .contactUs h3 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+  
+  .contactUs p {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #ffffff;
+  }
+  
+  .contactUs ul {
+    list-style: none;
+    padding: 0;
+    
+  }
+  
+  .contactUs ul li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+  
+  .conttactForm {
+    flex: 1;
+    width: 280px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form label {
+    margin-top: 10px;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+  
+  form input,
+  form textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 1rem;
+    transition: border 0.3s;
+    color:#ccc
+  }
+  
+  form input:focus,
+  form textarea:focus {
+    border-color: #007bff;
+  }
+  
+  form button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,53 +1,28 @@
-import  { useState, useEffect } from 'react'
-import axios from 'axios'
+import  {useContext} from 'react'
 import '../Style/Userviewproducts.css'
-import UserNavbar from './UserNavbar'
-
+import {ProductContext} from '../context/ProductContext'
+import { NavLink } from 'react-router-dom'
+import ProductCard from './ProductCard'
+import FilterProducts from './FilterProducts'
 
 function Userviewproducts() {
 
-    let [product, setProduct] = useState([])
-
-
-    useEffect(() => {
-        function fetchdata() {
-            axios.get('http://localhost:1000/products')
-                .then((res) => {
-                    console.log(res.data);
-                    setProduct(res.data)
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
-        }
-        fetchdata();
-    }, [])
-
+    const product = useContext(ProductContext)
 
     return (
-        <div className='AdminViewItems'>
-            <UserNavbar/>
+        <div className='AdminViewItems flex flex-col pl-10 pr-10'>
 
-            {product.map((product, id) => {
-                return (
-                    <div className="product-card" key={id}>
-                        <img className="product-image" src={product.image} alt="Product Image"  />
-                            <div className="product-info">
-                                <div className="product-name">{product.name}</div>
-                                <div className="product-category">{product.category}</div>
-                                <div className="product-price">
-                                    {product.price}</div>
-                                <div className="product-rating">
-                                    <div className="stars">⭐⭐⭐⭐☆{product.description}</div>
-                                    <div className="rating-value">{product.rating}</div>
-                                </div>
-                                <div className="product-description">
-                                    Experience ultimate comfort and style with the Nike Air Max, featuring superior cushioning and a modern design.
-                                </div>
-                            </div>
-                    </div>
-                );
-              })}
+            <div className='flex items-center justify-between w-30 gap-2'>
+                <NavLink to='/' ><h2>Home</h2></NavLink>
+                <h2>›</h2>
+                <h3>ViewProducts</h3>
+            </div>
+
+            <div className='product-container flex flex-wrap items-start justify-around gap-10 relative'>
+                 <FilterProducts/>
+                 <ProductCard product={product} />
+            </div>
+          
             
 
 

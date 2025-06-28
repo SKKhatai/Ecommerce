@@ -5,7 +5,7 @@ export default function Backend() {
 useEffect(()=>{
     
     function fetchdata(){
-      axios.get('http://localhost:4000/allNotes')
+      axios.get('https://68397deb6561b8d882b09d9c.mockapi.io/ecom/products')
       .then((res)=>{
         console.log(res.data)
         setA(res.data)

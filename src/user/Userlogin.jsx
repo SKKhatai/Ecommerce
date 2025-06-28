@@ -12,7 +12,7 @@ const Userlogin = () => {
     // fetching userData
     useEffect(() => {
     const getUserData = async () => {
-        let res = await fetch('http://localhost:1000/User');
+        let res = await fetch('https://68397deb6561b8d882b09d9c.mockapi.io/ecom/users');
         let data = await res.json()
         setUser(data);
     }

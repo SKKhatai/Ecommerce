@@ -39,6 +39,10 @@ body {
     padding: 1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .link img {
@@ -65,7 +69,7 @@ body {
    
 }
 .link:hover img {
-    transform: translateY(-150px);
+    transform: translateY(-50px);
     /* transform: scale(1.1);  */
 }
 
