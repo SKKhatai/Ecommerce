@@ -1,6 +1,6 @@
 # Ecommerce
 
-A robust, full-featured ecommerce application designed to provide a seamless shopping experience for customers and powerful management tools for administrators. This project serves as a foundation for building an online store, managing inventory, processing orders, and integrating with popular payment systems.
+A robust, full-featured ecommerce application designed to provide a seamless shopping experience for customers and powerful management tools for administrators. This project serves as a foundation for building an online store, managing inventory, processing orders.
 
 ## Table of Contents
 
