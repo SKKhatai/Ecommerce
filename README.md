@@ -26,8 +26,6 @@ A robust, full-featured ecommerce application designed to provide a seamless sho
 - Secure checkout and payment integration
 - Order history for users
 - Admin dashboard for managing products, orders, and users
-- Responsive design for mobile and desktop devices
-
 ## Tech Stack
 
 - **Frontend:** (e.g. React.js, Vue.js, HTML, CSS, JavaScript)
