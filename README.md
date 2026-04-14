@@ -26,11 +26,12 @@ A robust, full-featured ecommerce application designed to provide a seamless sho
 - Secure checkout and payment integration
 - Order history for users
 - Admin dashboard for managing products, orders, and users
+
 ## Tech Stack
 
 - **Frontend:** (e.g. React.js, Vue.js, HTML, CSS, JavaScript)
 - **Backend:** (e.g. Node.js, Express, Django, Flask)
-- **Database:** (e.g. MongoDB, PostgreSQL, MySQL)
+- **Database:** (e.g. MongoDB, MySQL)
 - **Payment Integration:** (e.g. Stripe, PayPal)
 - **Authentication:** (e.g. JWT, OAuth)
 
