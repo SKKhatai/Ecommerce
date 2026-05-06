@@ -63,8 +63,6 @@ A robust, full-featured ecommerce application designed to provide a seamless sho
    yarn install
    ```
 
-3. Set up environment variables with your database and API credentials (create a `.env` file if required).
-
 ### Running the Application
 
 For development:
