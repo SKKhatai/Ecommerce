@@ -1,24 +1,23 @@
-import  { useEffect, useState } from 'react'
-import  axios  from 'axios'
-export default function Backend() {
-    let [a,setA]= useState([]);
-useEffect(()=>{
-    
-    function fetchdata(){
-      axios.get('https://68397deb6561b8d882b09d9c.mockapi.io/ecom/products')
-      .then((res)=>{
-        console.log(res.data)
-        setA(res.data)
-      })
-    }
-    fetchdata()
+import { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
+import { endpoints } from './lib/api.js';
+import { ProductContext } from './context/ProductContext.jsx';
 
-},[])
+export default function Backend() {
+  const { products } = useContext(ProductContext);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get(endpoints.products).then((res) => setData(res.data));
+  }, []);
+
+  const list = products.length ? products : data;
+
   return (
-    <div>
-        {a.map((i,idx)=>{
-            return <h1 key={idx}>{i.title}</h1>
-        })}
+    <div className="p-8 pt-24">
+      {list.map((i) => (
+        <h1 key={i.id}>{i.title || i.name}</h1>
+      ))}
     </div>
-  )
+  );
 }

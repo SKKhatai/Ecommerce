@@ -1,65 +1,69 @@
-import  {useEffect, useState} from 'react';
-import '../Style/Userlogin.css'
-import loginImg from '../images/shop.jpg'
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import loginImg from '../images/shop.jpg';
+import { endpoints } from '../lib/api.js';
+import '../Style/Adminlogin.css';
 
 const Userlogin = () => {
+  const [users, setUsers] = useState([]);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-    let [User, setUser] = useState([]);
-    let navigate = useNavigate()
+  useEffect(() => {
+    fetch(endpoints.users)
+      .then((res) => res.json())
+      .then(setUsers)
+      .catch(() => toast.error('Could not load users'));
+  }, []);
 
-    // fetching userData
-    useEffect(() => {
-    const getUserData = async () => {
-        let res = await fetch('https://68397deb6561b8d882b09d9c.mockapi.io/ecom/users');
-        let data = await res.json()
-        setUser(data);
+  function login(e) {
+    e.preventDefault();
+    const match = users.filter(
+      (x) => x.email === username && x.password === password && !x.isAdmin
+    );
+    if (match.length > 0) {
+      toast.success('Login successful');
+      navigate('/userhomepage');
+    } else {
+      toast.error('Invalid email or password');
     }
-    getUserData()
+  }
 
-   },[])
+  return (
+    <div className="userlogin">
+      <div className="outer">
+        <div className="img">
+          <img src={loginImg} alt="shop" />
+        </div>
+        <form className="form" onSubmit={login}>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter email"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">User Login</button>
+          <span>
+            New here? <Link to="/usersignup">Sign Up</Link>
+          </span>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-
-    let [username, setUsername] = useState("");
-    let [password, setPassword] = useState("");
-    
-    function login(){
-        let filterUser = User.filter(x=>{
-            return (x.email === username &&x.password === password)
-        })
-
-        if(filterUser.length > 0){
-            alert("Login successfull")
-            navigate('/userhomepage')
-        }
-    }
-
-    return ( 
-        <div className="userlogin">
-              <div className="outer">
-                <div className='img'>
-                  <img src={loginImg} alt="img" />
-                </div>
-        
-                <form action="" className='form'>
-                  <label htmlFor="">
-                    User Username :
-                  </label>
-                  <input type="text" placeholder='  Enter email / Username' value={username}
-                    onChange={(e) => { setUsername(e.target.value) }} required />
-                  <label htmlFor="">
-                    User Password :
-                  </label>
-                  <input type="text" placeholder='  Enter password' value={password}
-                    onChange={(e) => { setPassword(e.target.value) }} required />
-                  <button type="button" onClick={login} style={{ backgroundColor: "black", color: "white", margin: "10px" }}>User Login</button>
-                  <span>Click here to <Link to='/usersignup'>Sign Up</Link></span>
-                </form>
-              </div>
-        
-            </div>
-     );
-}
- 
 export default Userlogin;

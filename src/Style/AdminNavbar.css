@@ -1,108 +1,155 @@
-/* Admin Navbar Styling */
+/* Navbar – shared user & admin */
 .AdminNavbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-  padding: 15px 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 24px;
   color: black;
-  position: absolute;
+  position: sticky;
+  top: 0;
   width: 100%;
-  top:0;
-  left: 0;
-  /* z-index: 1000; */
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
 .AdminNavbar .logo img {
-  height: 50px;
+  height: 44px;
+  width: auto;
 }
 
-.menu{
+.menu {
   display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #0e1420;
 }
-
-
 
 .links {
   display: flex;
-  gap: 20px;
-
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.active{
-  color: #0F4C91;
-  border-bottom: 2px solid #0F4C91;
+.links button {
+  background: #0e1420;
+  border: none;
+  padding: 0;
+  border-radius: 8px;
 }
 
+.links button a {
+  color: white !important;
+  display: block;
+  padding: 8px 16px;
+}
 
-
+.active {
+  color: #0f4c91 !important;
+  border-bottom: 2px solid #0f4c91;
+}
 
 .li {
-  color: black;
+  color: #222;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
   padding: 8px 12px;
-  border-radius: 5px;
-  transition: 0.3s;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .li:hover {
-  background: rgb(243, 238, 238);
+  background: rgba(15, 76, 145, 0.08);
+  color: #0f4c91;
 }
 
-/* sidebar styling */
+.cart-badge {
+  background: #eb4235;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+}
+
 .sidebar {
   position: fixed;
   display: none;
-  top: 1rem; /* Appears 2rem from the top */
-  right: 1.2rem;
-  width: 250px;
-  height: calc(100% - 2rem); /* Full height minus the top offset */
+  top: 0;
+  right: 0;
+  width: min(280px, 85vw);
+  height: 100%;
   background-color: #fff;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  z-index: 1000;
-  transform: translateX(0); /* Visible by default */
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
+  z-index: 1100;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.sidebar.hidden {
-  transform: translateX(100%);
+.sidebar.open {
+  display: flex;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
 }
 
 .cross {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .cross i {
-  font-size: 2rem;
+  font-size: 1.75rem;
   cursor: pointer;
   color: #333;
 }
 
 .item1 {
-  list-style: none;
-  padding: 1rem 0;
+  padding: 0.85rem 0;
   border-bottom: 1px solid #eee;
-  cursor: pointer;
   font-weight: 500;
   color: #333;
-  transition: color 0.2s;
-  align-items: center;
+  text-decoration: none;
 }
 
 .item1:hover {
-  color: #0F4C91;
+  color: #0f4c91;
 }
 
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  .links{
+  .links {
     display: none;
   }
+
   .menu {
-      display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .AdminNavbar {
+    padding: 10px 14px;
+  }
+
+  .AdminNavbar .logo img {
+    height: 36px;
   }
 }

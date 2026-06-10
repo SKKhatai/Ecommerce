@@ -1,0 +1,155 @@
+/* ── 3D scene helpers ── */
+.scene-3d {
+  perspective: 1200px;
+  perspective-origin: center center;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.45s ease;
+  will-change: transform;
+}
+
+.card-3d:hover {
+  transform: rotateY(-8deg) rotateX(6deg) translateZ(20px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(235, 66, 53, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.card-3d-inner {
+  transform: translateZ(30px);
+}
+
+/* Floating 3D hero product */
+.float-3d {
+  animation: float3d 5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 30px 40px rgba(235, 66, 53, 0.45));
+}
+
+@keyframes float3d {
+  0%,
+  100% {
+    transform: rotateY(-12deg) rotateX(8deg) translateY(0);
+  }
+  50% {
+    transform: rotateY(12deg) rotateX(-4deg) translateY(-18px);
+  }
+}
+
+/* Landing flip cards */
+.flip-card-3d {
+  perspective: 1000px;
+  width: 200px;
+  height: 240px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.flip-card-3d:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.flip-card-front {
+  background: linear-gradient(145deg, #ffffff, #f0f4ff);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.flip-card-back {
+  background: linear-gradient(145deg, #eb4235, #c92d22);
+  color: white;
+  transform: rotateY(180deg);
+  box-shadow: 0 10px 40px rgba(235, 66, 53, 0.4);
+}
+
+/* Ambient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  animation: orbPulse 8s ease-in-out infinite;
+}
+
+.orb-red {
+  background: #eb4235;
+  width: 320px;
+  height: 320px;
+  top: -80px;
+  right: -60px;
+}
+
+.orb-blue {
+  background: #0f4c91;
+  width: 280px;
+  height: 280px;
+  bottom: -60px;
+  left: -40px;
+  animation-delay: -4s;
+}
+
+@keyframes orbPulse {
+  0%,
+  100% {
+    transform: scale(1) translateZ(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.15) translateZ(20px);
+    opacity: 0.65;
+  }
+}
+
+/* Tilt on mouse – applied via JS class */
+.tilt-active {
+  transition: transform 0.1s ease-out;
+}
+
+/* Glass panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+}
+
+/* Responsive tweaks for 3D */
+@media (max-width: 768px) {
+  .card-3d:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .flip-card-3d {
+    width: 160px;
+    height: 200px;
+  }
+
+  .orb-red,
+  .orb-blue {
+    width: 180px;
+    height: 180px;
+  }
+
+}

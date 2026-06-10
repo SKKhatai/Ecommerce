@@ -1,71 +1,69 @@
-import React, { useEffect, useState } from "react";
-import '../Style/Adminlogin.css'
-import loginImg from '../images/shop.jpg'
-// import FormExample from './AdminSignup'
-import data from '../Data/AdminData.json'
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-
-import AdminHomePage from './AdminHomePage'
+import { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import loginImg from '../images/shop.jpg';
+import { endpoints } from '../lib/api.js';
+import '../Style/Adminlogin.css';
 
 const Adminlogin = () => {
-
-  // fetching using useEffect
-  let [Admin, setAdmin] = useState([]);
-  let navigate = useNavigate();
+  const [admins, setAdmins] = useState([]);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchAdminData = async () => {
-      let res = await fetch('https://68397deb6561b8d882b09d9c.mockapi.io/ecom/users');
-      let data = await res.json();
-      setAdmin(data)
-    }
-    fetchAdminData();
-  }, [])
+    fetch(endpoints.users)
+      .then((res) => res.json())
+      .then(setAdmins)
+      .catch(() => toast.error('Could not load admin data'));
+  }, []);
 
-  // console.log(Admin);
-  let [username, setUsername] = useState("");
-  let [password, setPassword] = useState("");
-  const login = () => {
-    let filterVal = Admin.filter((x) => {      
-      return ( x.isAdmin== true && x.email === username && x.password == password)
-    })
-
-    if (filterVal.length > 0) {
-      alert("Login successfull")
-      navigate('/adminhomepage')
-
-    }
-    else {
-      alert("Invalids details")
+  function login(e) {
+    e.preventDefault();
+    const match = admins.filter(
+      (x) => x.isAdmin === true && x.email === username && x.password === password
+    );
+    if (match.length > 0) {
+      toast.success('Admin login successful');
+      navigate('/adminhomepage');
+    } else {
+      toast.error('Invalid admin credentials');
     }
   }
 
   return (
     <div className="adminlogin">
       <div className="outer">
-        <div className='img'>
-          <img src={loginImg} alt="img" />
+        <div className="img">
+          <img src={loginImg} alt="shop" />
         </div>
-
-        <form action="" className='form'>
-          <label htmlFor="">
-            Admin Username :
-          </label>
-          <input type="text" placeholder='  Enter AdminName' value={username}
-            onChange={(e) => { setUsername(e.target.value) }} required />
-          <label htmlFor="">
-            Admin Password :
-          </label>
-          <input type="text" placeholder='  Enter password' value={password}
-            onChange={(e) => { setPassword(e.target.value) }} required />
-          <button type="button" onClick={login} style={{ backgroundColor: "black", color: "white", margin: "10px" }}>Admin Login</button>
-          <span>Click here to <Link to='/adminsignup'>Sign Up</Link></span>
+        <form className="form" onSubmit={login}>
+          <label htmlFor="email">Admin Email</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter admin email"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Admin Login</button>
+          <span>
+            New admin? <Link to="/adminsignup">Sign Up</Link>
+          </span>
         </form>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
 export default Adminlogin;

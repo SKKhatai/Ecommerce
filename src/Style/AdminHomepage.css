@@ -1,86 +1,25 @@
 .Adminhomepage {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensures the page covers the full height */
-    width: 100vw; /* Full width of the viewport */
-    background-color: #f9f9f9; /* Light background color */
-    font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f4f6fb;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.admin-main {
+  flex: 1;
+  padding-top: 70px;
+  width: 100%;
+}
+
+.Adminhomepage .footer,
+.Adminhomepage .Adminfooter {
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .admin-main {
+    padding-top: 60px;
   }
-  
-  /* Navbar styling */
-  .Adminhomepage .navbar {
-    background-color: #007bff; /* Primary blue color */
-    padding: 10px 20px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Content area styling */
-  .Adminhomepage .content {
-    flex: 1; /* Makes the content area take up available space */
-    padding: 20px;
-    background-color: #ffffff; /* White background for content */
-    margin: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Routes container styling */
-  .Adminhomepage .Routes {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Footer styling */
-  .Adminhomepage .footer {
-    background-color: #000; /* Black background for footer */
-    color: white;
-    padding: 10px 20px;
-    margin-bottom: 0px;
-    text-align: center;
-  }
-  
-  .Adminhomepage .footer a {
-    color: #007bff; /* Blue links in footer */
-    text-decoration: none;
-  }
-  
-  .Adminhomepage .footer a:hover {
-    color: #0056b3;
-  }
-  
-  /* Button styles (optional) */
-  .Adminhomepage button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .Adminhomepage button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .Adminhomepage .content {
-      margin: 10px;
-      padding: 15px;
-    }
-  
-    .Adminhomepage .navbar {
-      flex-wrap: wrap;
-      justify-content: center;
-      text-align: center;
-    }
-  }
-  
+}

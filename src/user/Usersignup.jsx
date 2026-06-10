@@ -1,48 +1,71 @@
-import React, { useEffect, useState } from 'react'
-import loginImg from '../images/shop.jpg'
-import axios from 'axios'
-
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import loginImg from '../images/shop.jpg';
+import { endpoints } from '../lib/api.js';
+import '../Style/Adminlogin.css';
 
 function Usersignup() {
- 
-  let [username, setUsername] = useState("")
-  let [password, setPassword] = useState("")
-    
-  useEffect(()=>{
-     axios.get('https://68397deb6561b8d882b09d9c.mockapi.io/ecom/users')
-     .then((res)=>{
-      console.log(res)
-     })
-     .catch((err)=>{
-      console.log(err)
-     })
-  })
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
+  function signup(e) {
+    e.preventDefault();
+    const data = { name: username, email, password, isAdmin: false };
+    axios
+      .post(endpoints.users, data)
+      .then(() => {
+        toast.success('Signup successful! Please login.');
+        navigate('/userlogin');
+      })
+      .catch(() => toast.error('Signup failed. Try again.'));
+  }
 
   return (
     <div className="usersignup">
-                 <div className="outer">
-                   <div className='img'>
-                     <img src={loginImg} alt="img" />
-                   </div>
-           
-                   <form action="/userlogin" className='form' method='post'>
-                     <label htmlFor="">
-                       User Username :
-                     </label>
-                     <input type="text" placeholder='  Enter email / Username' value={username}
-                       onChange={(e) => { setUsername(e.target.value) }} required />
-                     <label htmlFor="">
-                       User Password :
-                     </label>
-                     <input type="text" placeholder='  Enter password' value={password}
-                       onChange={(e) => { setPassword(e.target.value) }} required />
-                     <button type="button" onClick={login} style={{ backgroundColor: "black", color: "white", margin: "10px" }}>User SignUp</button>
-                   </form>
-                 </div>
-           
-               </div>
-  )
+      <div className="outer">
+        <div className="img">
+          <img src={loginImg} alt="shop" />
+        </div>
+        <form className="form" onSubmit={signup}>
+          <label htmlFor="name">Full Name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="Enter your name"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Sign Up</button>
+          <span>
+            Already have an account? <Link to="/userlogin">Login</Link>
+          </span>
+        </form>
+      </div>
+    </div>
+  );
 }
 
-export default Usersignup
+export default Usersignup;
