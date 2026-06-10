@@ -1,52 +1,80 @@
-import axios from 'axios'
-import '../Style/AdminSignup.css'
-import signupImg from '../images/shop.jpg'
-import Adminlogin from './Adminlogin';
+import axios from 'axios';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import '../Style/Adminlogin.css';
+import signupImg from '../images/shop.jpg';
+import { endpoints } from '../lib/api.js';
 
-import {useState}  from'react';
 const AdminSignup = () => {
-let {email, setEmail} = useState("")
-let {password, setPassword} = useState("")
-let {name, setName} = useState("")
-let {phone, setphone} = useState("")
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const navigate = useNavigate();
 
-let data = {email, password, name, phone}
+  function signupSubmit(e) {
+    e.preventDefault();
+    const data = { email, password, name, phone, isAdmin: true };
+    axios
+      .post(endpoints.users, data)
+      .then(() => {
+        toast.success('Admin signup successful');
+        navigate('/adminlogin');
+      })
+      .catch(() => toast.error('Signup failed'));
+  }
 
-const SignupSubmit = () =>{
-   axios.post('https://68397deb6561b8d882b09d9c.mockapi.io/ecom/users', data)
-   .then((res)=>{
-     console.log(res.data)
-     alert("Signup successful")
-   })
-   .catch((rej)=>{
-    console.log(rej)
-    console.log("Signup failed")
-   })
-}
-
-  return ( 
+  return (
     <div className="adminsignup">
       <div className="outer">
-       <div className='img'>
-       <img src={signupImg} alt="img" />
-       </div>
-
-      <form onSubmit={SignupSubmit} method='post' action={<Adminlogin/>}>
-      <label htmlFor="">Name</label>
-      <input type="text" placeholder='Enter name' value={name} onChange={(e)=>{setName(e.target.value)}} />
-      <label htmlFor="">Email</label>
-      <input type="text" placeholder='Enter Email' value={email} onChange={(e)=>{setEmail(e.target.value)}} />
-      <label htmlFor="">Password</label>
-      <input type="password" placeholder='Enter password' value={password} onChange={(e)=>{setPassword(e.target.value)}} />
-      <label htmlFor="">Phone</label>
-      <input type="text" placeholder='Enter Phone' value={phone} onChange={(e)=>{setphone(e.target.value)}} />
-      <button type='submit' onClick={SignupSubmit} style={{backgroundColor:"black",color:"white", margin:"10px"}}>Sign Up</button>
-      </form>
+        <div className="img">
+          <img src={signupImg} alt="signup" />
+        </div>
+        <form onSubmit={signupSubmit}>
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <label htmlFor="phone">Phone</label>
+          <input
+            id="phone"
+            type="tel"
+            placeholder="Enter Phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+          <button type="submit">Sign Up</button>
+          <span>
+            Already registered? <Link to="/adminlogin">Login</Link>
+          </span>
+        </form>
       </div>
-     
-
     </div>
-   );
-}
- 
+  );
+};
+
 export default AdminSignup;

@@ -1,10 +1,11 @@
 .addproducts {
-  background-color: #eaf4fe; /* Light blue background */
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  margin: 20px auto;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  max-width: 520px;
+  width: calc(100% - 2rem);
+  margin: 1.5rem auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 .addproducts fieldset {
@@ -12,42 +13,100 @@
   padding: 0;
 }
 
+.addproducts legend {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0e1420;
+  margin-bottom: 1rem;
+}
+
 .addproducts label {
   display: block;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 5px;
-  color: #0056b3; /* Darker blue for text */
+  color: #0f4c91;
 }
 
-.addproducts input, 
+.addproducts input,
 .addproducts select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   font-size: 14px;
 }
 
-.addproducts input:focus, 
+.addproducts input:focus,
 .addproducts select:focus {
   outline: none;
-  border-color: #007bff; /* Blue border on focus */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #0f4c91;
+  box-shadow: 0 0 0 3px rgba(15, 76, 145, 0.15);
 }
 
 .addproducts .btn {
-  background-color: #007bff; /* Primary blue button */
+  background-color: #0f4c91;
   color: white;
-  padding: 10px 15px;
+  padding: 12px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   width: 100%;
+  font-weight: 600;
 }
 
 .addproducts .btn:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0a3568;
+}
+
+.updateproducts {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  max-width: 520px;
+  width: calc(100% - 2rem);
+  margin: 1.5rem auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.updateproducts fieldset {
+  border: none;
+  padding: 0;
+}
+
+.updateproducts legend {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.updateproducts label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.updateproducts input,
+.updateproducts select,
+.updateproducts textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.updateproducts .btn-danger {
+  background: #eb4235;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
 }

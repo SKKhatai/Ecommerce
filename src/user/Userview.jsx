@@ -1,68 +1,74 @@
-import { useState, useEffect } from 'react'
-import image1 from '../images/men1.png'
-import image2 from '../images/woman1.png'
-import image3 from '../images/sale1.png'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import image1 from '../images/men1.png';
+import image2 from '../images/woman1.png';
+import image3 from '../images/sale1.png';
 
 function Userview() {
-    let [slideItem, setSlide] = useState(0)
+  const [slideItem, setSlide] = useState(0);
 
-  let Items = [
+  const Items = [
     {
       id: 1,
       title: "70% off on men's shopping",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quidem vitae, ullam odit debitis iure adipisci minima molestias laboriosam libero amet dolor ipsa, tenetur dolorem quia.",
-      image: image1
+      description:
+        'Discover the latest trends in menswear. Premium quality at unbeatable prices — limited time only.',
+      image: image1,
     },
     {
       id: 2,
       title: "70% off on Women's shopping",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quidem vitae, ullam odit debitis iure adipisci minima molestias laboriosam libero amet dolor ipsa, tenetur dolorem quia.",
-      image: image2
+      description:
+        'Elevate your style with our curated womenswear collection. Fashion that speaks for itself.',
+      image: image2,
     },
     {
       id: 3,
-      title: "Sales in all products",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quidem vitae, ullam odit debitis iure adipisci minima molestias laboriosam libero amet dolor ipsa, tenetur dolorem quia.",
-      image: image3
-    }
-  ]
+      title: 'Sales on all products',
+      description:
+        'Shop everything from electronics to groceries. Massive discounts across every category.',
+      image: image3,
+    },
+  ];
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setSlide(prev => (prev === Items.length - 1 ? 0 : prev + 1));
-  }, 3000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlide((prev) => (prev === Items.length - 1 ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [Items.length]);
 
-  return () => clearInterval(interval); // Clean up interval on unmount
-}, [Items.length]);
   return (
-    <div className="hero" style={{
-        width: "70%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "20px",
-        height: "90vh",
-        zIndex: "1",
-        marginTop: "5rem",
-        alignSelf: "center",
-        }}>
-         <div style={{
-          width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-          flexWrap: "wrap"
-            }}>
-            <div className="content w-lg">
-            <h1 style={{ color: "white" }}>{Items[slideItem].title}</h1>
-            <p style={{color:"white"}}>{Items[slideItem].description}</p>
-            <button style={{backgroundColor:"#EB4235"}}>Order now</button>
-             </div>
-
-             <div className="image w-96 ">
-            <img src={Items[slideItem].image} alt="image" style={{ objectFit: "cover", marginLeft: "3rem", filter: "drop-shadow(5px 5px 50px #EB4235)" }} />
-            </div>
-         </div>
-
+    <section className="hero-section">
+      <div className="hero-inner">
+        <div className="hero-text glass-panel">
+          <h1>{Items[slideItem].title}</h1>
+          <p>{Items[slideItem].description}</p>
+          <Link to="/userViewProducts" className="hero-cta">
+            Shop Now
+          </Link>
+          <div className="hero-dots">
+            {Items.map((item, idx) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setSlide(idx)}
+                className={idx === slideItem ? 'hero-dot active' : 'hero-dot'}
+                aria-label={`Slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="hero-visual">
+          <img
+            src={Items[slideItem].image}
+            alt={Items[slideItem].title}
+            className="hero-product-img"
+          />
+        </div>
       </div>
-  )
+    </section>
+  );
 }
 
-export default Userview
+export default Userview;

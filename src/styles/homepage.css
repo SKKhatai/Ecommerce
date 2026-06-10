@@ -1,0 +1,132 @@
+.homepage-wrap {
+  width: 100%;
+  min-height: 100vh;
+  background: #0e1420;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.homepage-orb {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Hero */
+.hero-section {
+  width: 100%;
+  padding: 6rem 1.25rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.hero-text {
+  padding: 1.75rem;
+}
+
+.hero-text h1 {
+  color: #fff;
+  font-size: clamp(1.6rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+.hero-text p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: #eb4235;
+  color: #fff !important;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.hero-cta:hover {
+  background: #c92d22;
+  color: #fff !important;
+}
+
+.hero-dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.hero-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.3s, background 0.3s;
+}
+
+.hero-dot.active {
+  width: 2rem;
+  background: #eb4235;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-product-img {
+  max-height: 280px;
+  width: auto;
+  object-fit: contain;
+  animation: float3d 5s ease-in-out infinite;
+  filter: drop-shadow(0 24px 40px rgba(235, 66, 53, 0.4));
+}
+
+@media (min-width: 640px) {
+  .hero-product-img {
+    max-height: 360px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-product-img {
+    max-height: 400px;
+  }
+}
+
+.featured-section {
+  position: relative;
+  z-index: 1;
+}
+
+#contact-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
