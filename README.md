@@ -265,15 +265,7 @@ git commit -m "Add amazing feature"
 git push origin feature/amazing-feature
 ```
 
----
 
-## 📬 Contact
-
-**Sourav Khatai**
-
-- 📧 souravkhatai6@gmail.com
-- 📱 +91 9777238708
-- 📍 Bhubaneswar, Odisha
 
 ---
 
